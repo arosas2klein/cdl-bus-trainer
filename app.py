@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+from PIL import Image, ImageOps  # Added to handle phone image auto-rotation
 
 # 1. Page Configuration for Mobile Devices
 st.set_page_config(
@@ -13,18 +14,28 @@ st.title("🚌 CDL Pre-Trip Inspection Helper")
 st.write("Tap a section below, then select any part to view its location photo and exact CDL script.")
 st.markdown("---")
 
-# 2. Updated Helper Function to accept .jpg OR .jpeg automatically
+# 2. Updated Helper Function to Fix Phone Image Rotation (EXIF Transpose)
 def display_part_image(image_filename, fallback_text):
-    """Displays the image by trying both .jpg and .jpeg extensions just in case!"""
-    # Strip extension if provided to test both formats
+    """Displays the image, auto-correcting any smartphone rotation data!"""
     base_name = os.path.splitext(image_filename)[0]
     jpg_version = f"{base_name}.jpg"
     jpeg_version = f"{base_name}.jpeg"
     
+    target_file = None
     if os.path.exists(jpg_version):
-        st.image(jpg_version, use_container_width=True, caption=f"Target Location: {fallback_text}")
+        target_file = jpg_version
     elif os.path.exists(jpeg_version):
-        st.image(jpeg_version, use_container_width=True, caption=f"Target Location: {fallback_text}")
+        target_file = jpeg_version
+        
+    if target_file:
+        try:
+            # Open image and transpose it based on phone orientation data
+            img = Image.open(target_file)
+            fixed_img = ImageOps.exif_transpose(img)
+            st.image(fixed_img, use_container_width=True, caption=f"Target Location: {fallback_text}")
+        except Exception:
+            # Fallback just in case something fails
+            st.image(target_file, use_container_width=True, caption=f"Target Location: {fallback_text}")
     else:
         st.warning(f"📸 [Photo Placeholder for {fallback_text}] — Upload '{jpg_version}' or '{jpeg_version}' to your GitHub repository to see your bus photo here!")
 
