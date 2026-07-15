@@ -22,8 +22,9 @@ def display_part_image(image_filename, fallback_text):
         st.warning(f"📸 [Photo Placeholder for {fallback_text}] — Upload '{image_filename}' to your GitHub repository to see your bus photo here!")
 
 # 3. Create Mobile-Friendly Tabs for Bus Sections
-tab1, tab2, tab3, tab4 = st.tabs([
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "🚌 Front of the Vehicle", 
+    "🛞 Driver Side",
     "🛑 Air Brakes", 
     "👤 In-Cab & Safety", 
     "📐 External Walkaround"
@@ -99,9 +100,53 @@ with tab1:
         st.info("**🔩 Lug Nuts Script:**\n\n'All lug nuts are present, tight, and secure. Look closely for rust streaks (on steel wheels) or white powder trails (on aluminum wheels), which indicate a loose nut. No cracked bolt holes.'")
 
 # ------------------------------------------------------------------
-# SECTION 2: AIR BRAKE TEST (CRITICAL SEQUENCE)
+# SECTION 2: DRIVER SIDE
 # ------------------------------------------------------------------
 with tab2:
+    st.header("Driver Side")
+    
+    # Main overview photo of the driver side of your bus
+    display_part_image("driver_side_bus.jpg", "Driver Side View of the Bus")
+    
+    st.write("Click a component to inspect:")
+    
+    # 5 buttons arranged neatly for a mobile layout
+    col1, col2 = st.columns(2)
+    with col1:
+        side_lenses_clicked = st.button("🚨 Lenses & Reflectors", use_container_width=True)
+        traffic_devices_clicked = st.button("🚘 Traffic Monitor Devices", use_container_width=True)
+        electrical_box_clicked = st.button("⚡ Electrical Box", use_container_width=True)
+    with col2:
+        battery_clicked = st.button("🔋 Battery Compartment", use_container_width=True)
+        stop_arm_clicked = st.button("🛑 Stop Arm", use_container_width=True)
+
+    st.markdown("---")
+
+    # Dynamic Display based on selection
+    if side_lenses_clicked:
+        display_part_image("side_lenses.jpg", "Side Lenses and Reflectors")
+        st.info("**🚨 Lenses & Reflectors Script:**\n\n'All side lenses, marker lights, and reflectors are clean, unbroken, properly mounted, and correct color—amber towards the front and center, red towards the rear. Reflective tape is securely affixed.'")
+        
+    elif traffic_devices_clicked:
+        display_part_image("traffic_devices.jpg", "Traffic Monitor Devices (Crossover Mirrors)")
+        st.info("**🚘 Traffic Monitor Devices Script:**\n\n'Crossover mirrors and driver-side blind spot mirrors are securely mounted, brackets are not bent or broken, all hardware is tight, and glass is clean and uncracked.'")
+        
+    elif electrical_box_clicked:
+        display_part_image("electrical_box.jpg", "Side Electrical Panel")
+        st.info("**⚡ Electrical Box Script:**\n\n'The electrical panel access door opens and closes properly, and the latch secures tightly. Wires inside are secure, insulation is intact with no bare copper, and there are no signs of corrosion or burning.'")
+        
+    elif battery_clicked:
+        display_part_image("battery_compartment.jpg", "Battery Box")
+        st.info("**🔋 Battery Compartment Script:**\n\n'The battery tray slides in and out smoothly and locks securely. Connections are tight with no excessive corrosion. Cell caps are present if applicable. Wires are secure with no cracks or fraying. Box door latches closed.'")
+        
+    elif stop_arm_clicked:
+        display_part_image("stop_arm.jpg", "School Bus Stop Arm")
+        st.info("**🛑 Stop Arm Script:**\n\n'The stop arm assembly is firmly mounted to the side framework with no loose or missing bolts. Hoses and electrical lines are secure. The rubber frame seals are clean and intact. Red lights are clean, uncracked, and functional.'")
+
+# ------------------------------------------------------------------
+# SECTION 3: AIR BRAKE TEST (CRITICAL SEQUENCE)
+# ------------------------------------------------------------------
+with tab3:
     st.header("Air Brake Test")
     st.error("⚠️ WARNING: Missing or messing up any step in this sequence results in an AUTOMATIC FAILURE on the real CDL exam.")
     
@@ -125,9 +170,9 @@ with tab2:
         st.warning("**🛑 Step 3 Script & Actions:**\n\n'I will continue to pump the brake pedal to deplete air pressure further. The parking brake valve knob should automatically pop out between 20 and 45 psi.'\n\n*💡 Tip: Do not pull the valve out by hand; let the system do it.*")
 
 # ------------------------------------------------------------------
-# SECTION 3: IN-CAB & SAFETY
+# SECTION 4: IN-CAB & SAFETY
 # ------------------------------------------------------------------
-with tab3:
+with tab4:
     st.header("In-Cab & Passenger Area")
     
     in_cab_part = st.selectbox(
@@ -154,9 +199,9 @@ with tab3:
         st.success("**✅ Passenger Area Script:**\n\n'All passenger seats are securely bolted to the floor framework with no broken frames or exposed spring metal. All emergency exit handles operate smoothly, doors seal correctly, and the warning alarms buzz when opened.'")
 
 # ------------------------------------------------------------------
-# SECTION 4: EXTERNAL WALKAROUND
+# SECTION 5: EXTERNAL WALKAROUND
 # ------------------------------------------------------------------
-with tab4:
+with tab5:
     st.header("External Walkaround (Side & Rear)")
     
     walk_part = st.selectbox(
