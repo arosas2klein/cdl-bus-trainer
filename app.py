@@ -21,12 +21,12 @@ def display_part_image(image_filename, fallback_text):
     else:
         st.warning(f"📸 [Photo Placeholder for {fallback_text}] — Upload '{image_filename}' to your GitHub repository to see your bus photo here!")
 
-# 3. Create Mobile-Friendly Tabs for Bus Sections (Reordered Layout)
+# 3. Create Mobile-Friendly Tabs for Bus Sections (Exact Order Requested)
 tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
     "🚌 Front of the Vehicle", 
     "🛞 Driver Side",
-    "🚪 Passenger Side",
     "🔺 Rear of the Bus",
+    "🚪 Passenger Side",
     "🛑 Air Brakes", 
     "👤 In-Cab & Safety", 
     "📐 External Walkaround"
@@ -170,9 +170,28 @@ The battery tray slides in and out smoothly and locks securely. Connections are 
 The stop arm assembly is firmly mounted to the side framework with no loose or missing bolts. Hoses and electrical lines are secure. The rubber frame seals are clean and intact. Red lights are clean, uncracked, and functional.""")
 
 # ------------------------------------------------------------------
-# SECTION 3: PASSENGER SIDE
+# SECTION 3: REAR OF THE BUS
 # ------------------------------------------------------------------
 with tab3:
+    st.header("Rear of the Bus")
+    
+    display_part_image("rear_of_bus.jpg", "Rear View of the Bus")
+    st.write("Click a component to inspect:")
+    
+    rear_lights_clicked = st.button("🚨 Lights, Lenses and Reflectors", use_container_width=True)
+    
+    st.markdown("---")
+    
+    if rear_lights_clicked:
+        display_part_image("rear_lights.jpg", "Rear Lights and Lenses")
+        st.info("""**🚨 Lights, Lenses and Reflectors Script:**
+
+All rear lenses, clearance lights, tail lights, school bus amber/red flashing lights, turn signals, hazards, and reflectors are clean, not cracked or broken, and the proper color (red on the rear). Reflective tape outlining emergency paths or exits is clean and secure.""")
+
+# ------------------------------------------------------------------
+# SECTION 4: PASSENGER SIDE
+# ------------------------------------------------------------------
+with tab4:
     st.header("Passenger Side")
     
     display_part_image("passenger_side_bus.jpg", "Passenger Side View of the Bus")
@@ -218,25 +237,6 @@ The fuel tank is securely mounted to the frame with no loose or missing mounting
         st.info("""**🪵 Frame Script:**
 
 Inspecting the longitudinal frame members and cross members. There are no cracks, bends, welds, or illegal holes in the frame. The floor wood and metal supports show no signs of structural damage.""")
-
-# ------------------------------------------------------------------
-# SECTION 4: REAR OF THE BUS
-# ------------------------------------------------------------------
-with tab4:
-    st.header("Rear of the Bus")
-    
-    display_part_image("rear_of_bus.jpg", "Rear View of the Bus")
-    st.write("Click a component to inspect:")
-    
-    rear_lights_clicked = st.button("🚨 Lights, Lenses and Reflectors", use_container_width=True)
-    
-    st.markdown("---")
-    
-    if rear_lights_clicked:
-        display_part_image("rear_lights.jpg", "Rear Lights and Lenses")
-        st.info("""**🚨 Lights, Lenses and Reflectors Script:**
-
-All rear lenses, clearance lights, tail lights, school bus amber/red flashing lights, turn signals, hazards, and reflectors are clean, not cracked or broken, and the proper color (red on the rear). Reflective tape outlining emergency paths or exits is clean and secure.""")
 
 # ------------------------------------------------------------------
 # SECTION 5: AIR BRAKE TEST (CRITICAL SEQUENCE)
