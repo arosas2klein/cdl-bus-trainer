@@ -22,9 +22,10 @@ def display_part_image(image_filename, fallback_text):
         st.warning(f"📸 [Photo Placeholder for {fallback_text}] — Upload '{image_filename}' to your GitHub repository to see your bus photo here!")
 
 # 3. Create Mobile-Friendly Tabs for Bus Sections
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
     "🚌 Front of the Vehicle", 
     "🛞 Driver Side",
+    "🚪 Passenger Side",
     "🔺 Rear of the Bus",
     "🛑 Air Brakes", 
     "👤 In-Cab & Safety", 
@@ -169,9 +170,59 @@ The battery tray slides in and out smoothly and locks securely. Connections are 
 The stop arm assembly is firmly mounted to the side framework with no loose or missing bolts. Hoses and electrical lines are secure. The rubber frame seals are clean and intact. Red lights are clean, uncracked, and functional.""")
 
 # ------------------------------------------------------------------
-# SECTION 3: REAR OF THE BUS
+# SECTION 3: PASSENGER SIDE
 # ------------------------------------------------------------------
 with tab3:
+    st.header("Passenger Side")
+    
+    display_part_image("passenger_side_bus.jpg", "Passenger Side View of the Bus")
+    st.write("Click a component to inspect:")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        ps_lenses_clicked = st.button("🚨 Lenses and Reflectors", key="ps_lens", use_container_width=True)
+        ps_traffic_clicked = st.button("🚘 Traffic Monitor Devices", key="ps_traffic", use_container_width=True)
+        def_tank_clicked = st.button("🧪 DEF Tank", use_container_width=True)
+    with col2:
+        fuel_tank_clicked = st.button("⛽ Fuel Tank", use_container_width=True)
+        frame_clicked = st.button("🪵 Frame", use_container_width=True)
+
+    st.markdown("---")
+
+    if ps_lenses_clicked:
+        display_part_image("passenger_lenses.jpg", "Passenger Side Lenses and Reflectors")
+        st.info("""**🚨 Lenses & Reflectors Script:**
+
+All passenger-side lenses, markers, and reflectors are clean, uncracked, and the correct color (amber at the front/middle, red at the rear). Dual-action indicator lights on the entrance door are fully functional.""")
+        
+    elif ps_traffic_clicked:
+        display_part_image("passenger_mirrors.jpg", "Passenger Traffic Monitor Devices")
+        st.info("""**🚘 Traffic Monitor Devices Script:**
+
+Passenger-side blind spot mirrors, door glass, and crossover mirrors are secure, brackets are tight and unbroken, and the glass is completely clean, offering an unobstructed view.""")
+        
+    elif def_tank_clicked:
+        display_part_image("def_tank.jpg", "DEF Tank")
+        st.info("""**🧪 DEF Tank Script:**
+
+The DEF tank is securely mounted with no loose straps or brackets. The tank cap is present and fits tightly. I am checking underneath for any white, powdery residue which would indicate a DEF leak.""")
+        
+    elif fuel_tank_clicked:
+        display_part_image("fuel_tank.jpg", "Fuel Tank")
+        st.info("""**⛽ Fuel Tank Script:**
+
+The fuel tank is securely mounted to the frame with no loose or missing mounting straps. The fuel cap is tight and secure. There are no signs of active fuel leaks or wet spots underneath the tank or hoses.""")
+        
+    elif frame_clicked:
+        display_part_image("frame.jpg", "Bus Frame")
+        st.info("""**🪵 Frame Script:**
+
+Inspecting the longitudinal frame members and cross members. There are no cracks, bends, welds, or illegal holes in the frame. The floor wood and metal supports show no signs of structural damage.""")
+
+# ------------------------------------------------------------------
+# SECTION 4: REAR OF THE BUS
+# ------------------------------------------------------------------
+with tab4:
     st.header("Rear of the Bus")
     
     display_part_image("rear_of_bus.jpg", "Rear View of the Bus")
@@ -188,9 +239,9 @@ with tab3:
 All rear lenses, clearance lights, tail lights, school bus amber/red flashing lights, turn signals, hazards, and reflectors are clean, not cracked or broken, and the proper color (red on the rear). Reflective tape outlining emergency paths or exits is clean and secure.""")
 
 # ------------------------------------------------------------------
-# SECTION 4: AIR BRAKE TEST (CRITICAL SEQUENCE)
+# SECTION 5: AIR BRAKE TEST (CRITICAL SEQUENCE)
 # ------------------------------------------------------------------
-with tab4:
+with tab5:
     st.header("Air Brake Test")
     st.error("⚠️ WARNING: Missing or messing up any step in this sequence results in an AUTOMATIC FAILURE on the real CDL exam.")
     
@@ -224,9 +275,9 @@ I will continue to pump the brake pedal to deplete air pressure further. The par
 *💡 Tip: Do not pull the valve out by hand; let the system do it.*""")
 
 # ------------------------------------------------------------------
-# SECTION 5: IN-CAB & SAFETY
+# SECTION 6: IN-CAB & SAFETY
 # ------------------------------------------------------------------
-with tab5:
+with tab6:
     st.header("In-Cab & Passenger Area")
     
     in_cab_part = st.selectbox(
@@ -261,9 +312,9 @@ I have three red reflective triangles, spare fuses matching the vehicle requirem
 All passenger seats are securely bolted to the floor framework with no broken frames or exposed spring metal. All emergency exit handles operate smoothly, doors seal correctly, and the warning alarms buzz when opened.""")
 
 # ------------------------------------------------------------------
-# SECTION 6: EXTERNAL WALKAROUND
+# SECTION 7: EXTERNAL WALKAROUND
 # ------------------------------------------------------------------
-with tab6:
+with tab7:
     st.header("External Walkaround (Side & Rear)")
     
     walk_part = st.selectbox(
@@ -275,14 +326,12 @@ with tab6:
     
     if walk_part == "Side / Rear Brakes (Chambers & Adjusters)":
         display_part_image("brake_chamber.jpg", "Brake Chamber & Slack Adjuster")
-        # Fixed: Replaced st.help with st.info to prevent the AST string parser error
         st.info("""**📐 Brake Assembly Script:**
 
 Brake chambers are securely mounted, not dented, cracked, or leaking air. Slack adjusters and pushpins have no loose or missing parts; when pulled by hand with the brakes released, the push rod should move no more than 1 inch.""")
     
     elif walk_part == "Lights & Reflectors (Side/Rear)":
         display_part_image("bus_lights.jpg", "External Lights")
-        # Fixed: Replaced st.help with st.info to prevent the AST string parser error
         st.info("""**📐 Lights & Reflectors Script:**
 
 All external light lenses and reflectors are clean, unbroken, and the proper legal color (amber on the sides, red on the rear). I will check turn signals, emergency flashers, clearance indicators, and brake lights.""")
