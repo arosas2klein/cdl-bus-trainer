@@ -45,6 +45,7 @@ with tab1:
         shocks_clicked = st.button("🛢️ Shock Absorbers", use_container_width=True)
         drums_clicked = st.button("🥁 Brake Drums / Linings", use_container_width=True)
         rims_clicked = st.button("⭕ Rims", use_container_width=True)
+        leaks_clicked = st.button("💧 Leaks", use_container_width=True)
     with col2:
         mirrors_clicked = st.button("🪞 Mirrors / Brackets", use_container_width=True)
         steering_axle_clicked = st.button("🔩 Steering Axle (Springs/Mounts/U-Bolts)", use_container_width=True)
@@ -115,6 +116,12 @@ The rim is properly mounted and secure. It is not cracked, bent, or distorted. T
         st.info("""**🔩 Lug Nuts Script:**
 
 All lug nuts are present, tight, and secure. Look closely for rust streaks (on steel wheels) or white powder trails (on aluminum wheels), which indicate a loose nut. No cracked bolt holes.""")
+
+    elif leaks_clicked:
+        display_part_image("front_leaks.jpg", "Ground & Engine Compartment Leaks")
+        st.info("""**💧 Leaks Script:**
+
+I am looking underneath the vehicle on the ground for any fresh puddles, drips, or spots of engine oil, coolant, power steering fluid, or fuel. I am also checking the engine compartment components for any active fluid leaks or the sound of escaping air.""")
 
 # ------------------------------------------------------------------
 # SECTION 2: DRIVER SIDE
