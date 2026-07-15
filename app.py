@@ -201,4 +201,86 @@ with tab4:
     
     st.markdown("---")
     
-    if step == "Step 1: Applied Pressure
+    if step == "Step 1: Applied Pressure Leak Test":
+        display_part_image("gauges_leak.jpg", "Air Pressure Gauges")
+        st.warning("""**🛑 Step 1 Script & Actions:**
+
+With a fully charged system (120-140 psi), I will turn the engine off, turn the key back to the ON position, fully release both parking brakes, and hold down the service brake pedal firmly for one minute. I will monitor my gauges; I should not lose more than 3 psi in one minute.
+
+*💡 Tip: Make sure the trainee times a full 60 seconds on a watch.*""")
+    
+    elif step == "Step 2: Low Air Warning Signal":
+        display_part_image("low_air_light.jpg", "Low Air Light/Buzzer")
+        st.warning("""**🛑 Step 2 Script & Actions:**
+
+I will pump the brake pedal repeatedly to bleed off pressure. The low air warning light and dashboard buzzer must activate at or before the air pressure drops to 55 psi.""")
+    
+    elif step == "Step 3: Parking Brake Valve Pop-Out":
+        display_part_image("brake_valves.jpg", "Yellow / Red Valve Knobs")
+        st.warning("""**🛑 Step 3 Script & Actions:**
+
+I will continue to pump the brake pedal to deplete air pressure further. The parking brake valve knob should automatically pop out between 20 and 45 psi.
+
+*💡 Tip: Do not pull the valve out by hand; let the system do it.*""")
+
+# ------------------------------------------------------------------
+# SECTION 5: IN-CAB & SAFETY
+# ------------------------------------------------------------------
+with tab5:
+    st.header("In-Cab & Passenger Area")
+    
+    in_cab_part = st.selectbox(
+        "Choose a part to review:", 
+        ["Safe Start Sequence", "Windshield & Wipers", "Emergency Equipment", "Passenger Seats & Exits"]
+    )
+    
+    st.markdown("---")
+    
+    if in_cab_part == "Safe Start Sequence":
+        display_part_image("dash_panel.jpg", "Gear Selector / Ignition")
+        st.success("""**✅ Safe Start Script:**
+
+With the parking brake firmly set, I will verify the transmission is in Neutral. I turn the key to the ON position to let the dashboard ABS light cycle on and off, then I safely start the engine.""")
+    
+    elif in_cab_part == "Windshield & Wipers":
+        display_part_image("windshield.jpg", "Windshield & Wipers")
+        st.success("""**✅ Windshield & Wipers Script:**
+
+The windshield is clean, free of cracks, obstruction, or illegal stickers. The wiper arms and blades are properly mounted, the rubber is not torn, and the washer fluid operates smoothly.""")
+    
+    elif in_cab_part == "Emergency Equipment":
+        display_part_image("safety_kit.jpg", "Fire Extinguisher & Triangles")
+        st.success("""**✅ Emergency Equipment Script:**
+
+I have three red reflective triangles, spare fuses matching the vehicle requirements, and a fully charged fire extinguisher rated 10-BC with its safety pin securely in place.""")
+    
+    elif in_cab_part == "Passenger Seats & Exits":
+        display_part_image("passenger_aisle.jpg", "Passenger Area")
+        st.success("""**✅ Passenger Area Script:**
+
+All passenger seats are securely bolted to the floor framework with no broken frames or exposed spring metal. All emergency exit handles operate smoothly, doors seal correctly, and the warning alarms buzz when opened.""")
+
+# ------------------------------------------------------------------
+# SECTION 6: EXTERNAL WALKAROUND
+# ------------------------------------------------------------------
+with tab6:
+    st.header("External Walkaround (Side & Rear)")
+    
+    walk_part = st.selectbox(
+        "Choose external component:",
+        ["Side / Rear Brakes (Chambers & Adjusters)", "Lights & Reflectors (Side/Rear)"]
+    )
+    
+    st.markdown("---")
+    
+    if walk_part == "Side / Rear Brakes (Chambers & Adjusters)":
+        display_part_image("brake_chamber.jpg", "Brake Chamber & Slack Adjuster")
+        st.help("""**📐 Brake Assembly Script:**
+
+Brake chambers are securely mounted, not dented, cracked, or leaking air. Slack adjusters and pushpins have no loose or missing parts; when pulled by hand with the brakes released, the push rod should move no more than 1 inch.""")
+    
+    elif walk_part == "Lights & Reflectors (Side/Rear)":
+        display_part_image("bus_lights.jpg", "External Lights")
+        st.help("""**📐 Lights & Reflectors Script:**
+
+All external light lenses and reflectors are clean, unbroken, and the proper legal color (amber on the sides, red on the rear). I will check turn signals, emergency flashers, clearance indicators, and brake lights.""")
