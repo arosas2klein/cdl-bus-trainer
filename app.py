@@ -92,9 +92,7 @@ with tab1:
     if lights_clicked:
         display_part_image("front_lights.jpg", "Lights and Lenses")
         st.info("""**💡 Lights & Lenses Script:**
-Clearance lights (Anber), Student loading lights (Red and Amber), Turn signals / 4-way flashers or Hazards (Amber), Headlight low and High beam (Clear). 
-Conditions:
-Working properly and clean, No missing parts, Not cracked or broken.""")
+Clearance lights (Anber), Student loading lights (Red and Amber), Turn signals / 4-way flashers or Hazards (Amber), Headlight low and High beam (Clear). - Working properly and clean, No missing parts, Not cracked or broken.""")
         
     elif mirrors_clicked:
         display_part_image("mirrors.jpg", "Mirrors and Brackets")
