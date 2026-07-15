@@ -275,12 +275,14 @@ with tab6:
     
     if walk_part == "Side / Rear Brakes (Chambers & Adjusters)":
         display_part_image("brake_chamber.jpg", "Brake Chamber & Slack Adjuster")
-        st.help("""**📐 Brake Assembly Script:**
+        # Fixed: Replaced st.help with st.info to prevent the AST string parser error
+        st.info("""**📐 Brake Assembly Script:**
 
 Brake chambers are securely mounted, not dented, cracked, or leaking air. Slack adjusters and pushpins have no loose or missing parts; when pulled by hand with the brakes released, the push rod should move no more than 1 inch.""")
     
     elif walk_part == "Lights & Reflectors (Side/Rear)":
         display_part_image("bus_lights.jpg", "External Lights")
-        st.help("""**📐 Lights & Reflectors Script:**
+        # Fixed: Replaced st.help with st.info to prevent the AST string parser error
+        st.info("""**📐 Lights & Reflectors Script:**
 
 All external light lenses and reflectors are clean, unbroken, and the proper legal color (amber on the sides, red on the rear). I will check turn signals, emergency flashers, clearance indicators, and brake lights.""")
