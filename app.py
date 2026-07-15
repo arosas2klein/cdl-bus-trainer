@@ -21,7 +21,7 @@ def display_part_image(image_filename, fallback_text):
     else:
         st.warning(f"📸 [Photo Placeholder for {fallback_text}] — Upload '{image_filename}' to your GitHub repository to see your bus photo here!")
 
-# 3. Create Mobile-Friendly Tabs for Bus Sections
+# 3. Create Mobile-Friendly Tabs for Bus Sections (Reordered Layout)
 tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
     "🚌 Front of the Vehicle", 
     "🛞 Driver Side",
