@@ -23,55 +23,88 @@ def display_part_image(image_filename, fallback_text):
 
 # 3. Create Mobile-Friendly Tabs for Bus Sections
 tab1, tab2, tab3, tab4 = st.tabs([
-    "🔧 Engine Compartment", 
+    "🚌 Front of the Vehicle", 
     "🛑 Air Brakes", 
     "👤 In-Cab & Safety", 
     "📐 External Walkaround"
 ])
 
 # ------------------------------------------------------------------
-# SECTION 1: ENGINE COMPARTMENT
+# SECTION 1: FRONT OF THE VEHICLE
 # ------------------------------------------------------------------
 with tab1:
-    st.header("Engine Compartment")
+    st.header("Front of the Vehicle")
+    
+    # Main overview photo of the front of your bus
+    display_part_image("front_of_bus.jpg", "Front View of the Bus")
+    
     st.write("Click a component to inspect:")
     
-    # Grid arrangement for thumb-tapping layout
+    # 5 rows of 2 buttons for a clean mobile grid layout
     col1, col2 = st.columns(2)
     with col1:
-        alt_clicked = st.button("⚡ Alternator", use_container_width=True)
-        water_clicked = st.button("💧 Water Pump", use_container_width=True)
+        lights_clicked = st.button("💡 Lights & Lenses", use_container_width=True)
+        hoses_clicked = st.button("🪱 Hoses", use_container_width=True)
+        shocks_clicked = st.button("🛢️ Shock Absorbers", use_container_width=True)
+        drums_clicked = st.button("🥁 Brake Drums / Linings", use_container_width=True)
+        rims_clicked = st.button("⭕ Rims", use_container_width=True)
     with col2:
-        steering_clicked = st.button("⚙️ Steering Box", use_container_width=True)
-        fluid_clicked = st.button("🧪 Fluids (Oil/Coolant)", use_container_width=True)
+        mirrors_clicked = st.button("🪞 Mirrors / Brackets", use_container_width=True)
+        steering_axle_clicked = st.button("🔩 Steering Axle (Springs/Mounts/U-Bolts)", use_container_width=True)
+        brake_hoses_clicked = st.button("⛓️ Brake Hoses / Lines", use_container_width=True)
+        tires_clicked = st.button("🛞 Tires", use_container_width=True)
+        lug_nuts_clicked = st.button("🔩 Lug Nuts", use_container_width=True)
 
     st.markdown("---")
 
     # Dynamic Display based on selection
-    if alt_clicked:
-        display_part_image("alternator.jpg", "Alternator")
-        st.info("**⚡ Alternator Script:**\n\n'Properly mounted and secure. No loose or missing bolts. Wires are secure, not frayed, and connections are clean. Belt-driven with no more than 3/4 inch of play.'")
-    
-    elif water_clicked:
-        display_part_image("water_pump.jpg", "Water Pump")
-        st.info("**💧 Water Pump Script:**\n\n'Properly mounted and secure. Not cracked, bent, or broken. No loose or missing hardware. No signs of leaking. Belt-driven.'")
-    
-    elif steering_clicked:
-        display_part_image("steering_box.jpg", "Steering Gear Box")
-        st.info("**⚙️ Steering Gear Box Script:**\n\n'Properly mounted and secure. Not cracked, bent, or broken. No loose or missing bolts. No leaks from lines or the box itself.'")
+    if lights_clicked:
+        display_part_image("front_lights.jpg", "Lights and Lenses")
+        st.info("**💡 Lights & Lenses Script:**\n\n'All lights and lenses are clean, not cracked or broken, and the proper color. Amber on the front/sides. I am checking clearance lights, identification lights, turn signals, and hazards.'")
         
-    elif fluid_clicked:
-        display_part_image("fluids.jpg", "Fluid Level Dipsticks")
-        st.info("**🧪 Fluids Script:**\n\n'I will check the coolant sight glass or reservoir level, and pull the oil dipstick to ensure it is above the refill mark. I am checking all hoses and underneath the engine block for any active fluid leaks.'")
+    elif mirrors_clicked:
+        display_part_image("mirrors.jpg", "Mirrors and Brackets")
+        st.info("**🪞 Mirrors / Brackets Script:**\n\n'Mirrors are clean, not cracked or broken, and properly adjusted to me. Mirror brackets are securely mounted to the vehicle body, not bent or broken, with no missing hardware.'")
+        
+    elif hoses_clicked:
+        display_part_image("front_hoses.jpg", "Engine/Front Hoses")
+        st.info("**🪱 Hoses Script:**\n\n'Checking all visible power steering, coolant, and engine hoses. They are properly secured at both ends, not leaking, and have no abrasions, bumps, or cuts (ABC).'")
+        
+    elif steering_axle_clicked:
+        display_part_image("suspension_springs.jpg", "Leaf Springs & U-Bolts")
+        st.info("**🔩 Steering Axle (Suspension) Script:**\n\n'Leaf springs are not cracked, broken, shifted, or missing. Spring mounts are securely bolted with no cracks. U-bolts are secure, not cracked or bent, with no rust trails or shiny metal indicating loose nuts.'")
+        
+    elif shocks_clicked:
+        display_part_image("shocks.jpg", "Shock Absorbers")
+        st.info("**🛢️ Shock Absorbers Script:**\n\n'Shock absorbers are securely mounted at the top and bottom. They are straight, not bent or cracked, and there are no signs of active fluid leaking from the seals.'")
+        
+    elif brake_hoses_clicked:
+        display_part_image("brake_hoses.jpg", "Brake Hoses / Lines")
+        st.info("**⛓️ Brake Hoses / Lines Script:**\n\n'Brake hoses and lines are properly secured, not cracked or leaking air or fluid. No abrasions, bumps, or cuts on the rubber lines.'")
+        
+    elif drums_clicked:
+        display_part_image("brake_drums.jpg", "Brake Drums & Linings")
+        st.info("**🥁 Brake Drums / Linings Script:**\n\n'Brake drums are not cracked, thin, or broken, and free of oil, grease, or contaminants. Brake linings (shoes) are not worn dangerously thin (at least 1/4 inch thickness) and are free of cracks.'")
+        
+    elif tires_clicked:
+        display_part_image("front_tires.jpg", "Steering Axle Tires")
+        st.info("**🛞 Tires Script (ICD Rule):**\n\n* **Inflation:** Checked with a gauge to 100-110 psi.\n* **Condition:** No sidewall cuts, bubbles, or dry rot.\n* **Depth:** Must have at least 4/32 inch tread depth on front steering tires. Recaps/regrooved tires are strictly prohibited on the front axle.'")
+        
+    elif rims_clicked:
+        display_part_image("rims.jpg", "Wheel Rims")
+        st.info("**⭕ Rims Script:**\n\n'The rim is properly mounted and secure. It is not cracked, bent, or distorted. There are no welding repairs, which are illegal on commercial wheels.'")
+        
+    elif lug_nuts_clicked:
+        display_part_image("lug_nuts.jpg", "Lug Nuts")
+        st.info("**🔩 Lug Nuts Script:**\n\n'All lug nuts are present, tight, and secure. Look closely for rust streaks (on steel wheels) or white powder trails (on aluminum wheels), which indicate a loose nut. No cracked bolt holes.'")
 
 # ------------------------------------------------------------------
-# SECTION 2: AIR BRAKE TEST (CRITICAL SECTION)
+# SECTION 2: AIR BRAKE TEST (CRITICAL SEQUENCE)
 # ------------------------------------------------------------------
 with tab2:
     st.header("Air Brake Test")
     st.error("⚠️ WARNING: Missing or messing up any step in this sequence results in an AUTOMATIC FAILURE on the real CDL exam.")
     
-    # Radio buttons force step-by-step sequencing
     step = st.radio(
         "Select Brake Test Step to Study:", 
         ["Step 1: Applied Pressure Leak Test", "Step 2: Low Air Warning Signal", "Step 3: Parking Brake Valve Pop-Out"]
@@ -97,7 +130,6 @@ with tab2:
 with tab3:
     st.header("In-Cab & Passenger Area")
     
-    # Dropdown selector is great for large groups of items
     in_cab_part = st.selectbox(
         "Choose a part to review:", 
         ["Safe Start Sequence", "Windshield & Wipers", "Emergency Equipment", "Passenger Seats & Exits"]
@@ -125,27 +157,19 @@ with tab3:
 # SECTION 4: EXTERNAL WALKAROUND
 # ------------------------------------------------------------------
 with tab4:
-    st.header("External Walkaround")
+    st.header("External Walkaround (Side & Rear)")
     
     walk_part = st.selectbox(
         "Choose external component:",
-        ["Tires (The ICD Rule)", "Suspension (Springs & U-Bolts)", "Brakes (Chambers & Adjusters)", "Lights & Reflectors"]
+        ["Side / Rear Brakes (Chambers & Adjusters)", "Lights & Reflectors (Side/Rear)"]
     )
     
     st.markdown("---")
     
-    if walk_part == "Tires (The ICD Rule)":
-        display_part_image("tires.jpg", "Tire Assembly")
-        st.help("**📐 Tire Inspection Script (Remember ICD):**\n\n* **Inflation:** I will check inflation using an air pressure gauge to verify it is at manufacturer spec (around 100-110 psi).\n* **Condition:** No cuts, bubbles, dry rot, or separation on the tread or sidewalls.\n* **Depth:** Tread depth must be at least 4/32 inch on steering axle tires, and 2/32 inch on all other tires. Front steering tires cannot be recapped.")
-    
-    elif walk_part == "Suspension (Springs & U-Bolts)":
-        display_part_image("suspension.jpg", "Leaf Springs Assembly")
-        st.help("**📐 Suspension Script:**\n\n'Leaf springs are properly mounted, secure, and not cracked, broken, or shifted out of alignment. The U-bolts are secure with no cracked or missing hardware, and no shiny clean areas or rust trails indicating movement.'")
-    
-    elif walk_part == "Brakes (Chambers & Adjusters)":
+    if walk_part == "Side / Rear Brakes (Chambers & Adjusters)":
         display_part_image("brake_chamber.jpg", "Brake Chamber & Slack Adjuster")
         st.help("**📐 Brake Assembly Script:**\n\n'Brake chambers are securely mounted, not dented, cracked, or leaking air. Slack adjusters and pushpins have no loose or missing parts; when pulled by hand with the brakes released, the push rod should move no more than 1 inch.'")
     
-    elif walk_part == "Lights & Reflectors":
+    elif walk_part == "Lights & Reflectors (Side/Rear)":
         display_part_image("bus_lights.jpg", "External Lights")
-        st.help("**📐 Lights & Reflectors Script:**\n\n'All external light lenses and reflectors are clean, unbroken, and the proper legal color (amber on the front/sides, red on the rear). I will check high/low beam headlights, turn signals, emergency flashers, clearance indicators, and brake lights.'")
+        st.help("**📐 Lights & Reflectors Script:**\n\n'All external light lenses and reflectors are clean, unbroken, and the proper legal color (amber on the sides, red on the rear). I will check turn signals, emergency flashers, clearance indicators, and brake lights.'")
