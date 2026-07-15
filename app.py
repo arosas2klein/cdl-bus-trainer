@@ -21,15 +21,12 @@ def display_part_image(image_filename, fallback_text):
     else:
         st.warning(f"📸 [Photo Placeholder for {fallback_text}] — Upload '{image_filename}' to your GitHub repository to see your bus photo here!")
 
-# 3. Create Mobile-Friendly Tabs for Bus Sections (Exact Order Requested)
-tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+# 3. Create Mobile-Friendly Tabs for the 4 Main Sections
+tab1, tab2, tab3, tab4 = st.tabs([
     "🚌 Front of the Vehicle", 
     "🛞 Driver Side",
     "🔺 Rear of the Bus",
-    "🚪 Passenger Side",
-    "🛑 Air Brakes", 
-    "👤 In-Cab & Safety", 
-    "📐 External Walkaround"
+    "🚪 Passenger Side"
 ])
 
 # ------------------------------------------------------------------
@@ -237,101 +234,3 @@ The fuel tank is securely mounted to the frame with no loose or missing mounting
         st.info("""**🪵 Frame Script:**
 
 Inspecting the longitudinal frame members and cross members. There are no cracks, bends, welds, or illegal holes in the frame. The floor wood and metal supports show no signs of structural damage.""")
-
-# ------------------------------------------------------------------
-# SECTION 5: AIR BRAKE TEST (CRITICAL SEQUENCE)
-# ------------------------------------------------------------------
-with tab5:
-    st.header("Air Brake Test")
-    st.error("⚠️ WARNING: Missing or messing up any step in this sequence results in an AUTOMATIC FAILURE on the real CDL exam.")
-    
-    step = st.radio(
-        "Select Brake Test Step to Study:", 
-        ["Step 1: Applied Pressure Leak Test", "Step 2: Low Air Warning Signal", "Step 3: Parking Brake Valve Pop-Out"]
-    )
-    
-    st.markdown("---")
-    
-    if step == "Step 1: Applied Pressure Leak Test":
-        display_part_image("gauges_leak.jpg", "Air Pressure Gauges")
-        st.warning("""**🛑 Step 1 Script & Actions:**
-
-With a fully charged system (120-140 psi), I will turn the engine off, turn the key back to the ON position, fully release both parking brakes, and hold down the service brake pedal firmly for one minute. I will monitor my gauges; I should not lose more than 3 psi in one minute.
-
-*💡 Tip: Make sure the trainee times a full 60 seconds on a watch.*""")
-    
-    elif step == "Step 2: Low Air Warning Signal":
-        display_part_image("low_air_light.jpg", "Low Air Light/Buzzer")
-        st.warning("""**🛑 Step 2 Script & Actions:**
-
-I will pump the brake pedal repeatedly to bleed off pressure. The low air warning light and dashboard buzzer must activate at or before the air pressure drops to 55 psi.""")
-    
-    elif step == "Step 3: Parking Brake Valve Pop-Out":
-        display_part_image("brake_valves.jpg", "Yellow / Red Valve Knobs")
-        st.warning("""**🛑 Step 3 Script & Actions:**
-
-I will continue to pump the brake pedal to deplete air pressure further. The parking brake valve knob should automatically pop out between 20 and 45 psi.
-
-*💡 Tip: Do not pull the valve out by hand; let the system do it.*""")
-
-# ------------------------------------------------------------------
-# SECTION 6: IN-CAB & SAFETY
-# ------------------------------------------------------------------
-with tab6:
-    st.header("In-Cab & Passenger Area")
-    
-    in_cab_part = st.selectbox(
-        "Choose a part to review:", 
-        ["Safe Start Sequence", "Windshield & Wipers", "Emergency Equipment", "Passenger Seats & Exits"]
-    )
-    
-    st.markdown("---")
-    
-    if in_cab_part == "Safe Start Sequence":
-        display_part_image("dash_panel.jpg", "Gear Selector / Ignition")
-        st.success("""**✅ Safe Start Script:**
-
-With the parking brake firmly set, I will verify the transmission is in Neutral. I turn the key to the ON position to let the dashboard ABS light cycle on and off, then I safely start the engine.""")
-    
-    elif in_cab_part == "Windshield & Wipers":
-        display_part_image("windshield.jpg", "Windshield & Wipers")
-        st.success("""**✅ Windshield & Wipers Script:**
-
-The windshield is clean, free of cracks, obstruction, or illegal stickers. The wiper arms and blades are properly mounted, the rubber is not torn, and the washer fluid operates smoothly.""")
-    
-    elif in_cab_part == "Emergency Equipment":
-        display_part_image("safety_kit.jpg", "Fire Extinguisher & Triangles")
-        st.success("""**✅ Emergency Equipment Script:**
-
-I have three red reflective triangles, spare fuses matching the vehicle requirements, and a fully charged fire extinguisher rated 10-BC with its safety pin securely in place.""")
-    
-    elif in_cab_part == "Passenger Seats & Exits":
-        display_part_image("passenger_aisle.jpg", "Passenger Area")
-        st.success("""**✅ Passenger Area Script:**
-
-All passenger seats are securely bolted to the floor framework with no broken frames or exposed spring metal. All emergency exit handles operate smoothly, doors seal correctly, and the warning alarms buzz when opened.""")
-
-# ------------------------------------------------------------------
-# SECTION 7: EXTERNAL WALKAROUND
-# ------------------------------------------------------------------
-with tab7:
-    st.header("External Walkaround (Side & Rear)")
-    
-    walk_part = st.selectbox(
-        "Choose external component:",
-        ["Side / Rear Brakes (Chambers & Adjusters)", "Lights & Reflectors (Side/Rear)"]
-    )
-    
-    st.markdown("---")
-    
-    if walk_part == "Side / Rear Brakes (Chambers & Adjusters)":
-        display_part_image("brake_chamber.jpg", "Brake Chamber & Slack Adjuster")
-        st.info("""**📐 Brake Assembly Script:**
-
-Brake chambers are securely mounted, not dented, cracked, or leaking air. Slack adjusters and pushpins have no loose or missing parts; when pulled by hand with the brakes released, the push rod should move no more than 1 inch.""")
-    
-    elif walk_part == "Lights & Reflectors (Side/Rear)":
-        display_part_image("bus_lights.jpg", "External Lights")
-        st.info("""**📐 Lights & Reflectors Script:**
-
-All external light lenses and reflectors are clean, unbroken, and the proper legal color (amber on the sides, red on the rear). I will check turn signals, emergency flashers, clearance indicators, and brake lights.""")
