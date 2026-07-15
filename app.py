@@ -13,13 +13,20 @@ st.title("🚌 CDL Pre-Trip Inspection Helper")
 st.write("Tap a section below, then select any part to view its location photo and exact CDL script.")
 st.markdown("---")
 
-# 2. Define Helper Function to Safely Load Images
+# 2. Updated Helper Function to accept .jpg OR .jpeg automatically
 def display_part_image(image_filename, fallback_text):
-    """Displays the image if it exists in the GitHub folder, otherwise shows a nice placeholder."""
-    if os.path.exists(image_filename):
-        st.image(image_filename, use_container_width=True, caption=f"Target Location: {fallback_text}")
+    """Displays the image by trying both .jpg and .jpeg extensions just in case!"""
+    # Strip extension if provided to test both formats
+    base_name = os.path.splitext(image_filename)[0]
+    jpg_version = f"{base_name}.jpg"
+    jpeg_version = f"{base_name}.jpeg"
+    
+    if os.path.exists(jpg_version):
+        st.image(jpg_version, use_container_width=True, caption=f"Target Location: {fallback_text}")
+    elif os.path.exists(jpeg_version):
+        st.image(jpeg_version, use_container_width=True, caption=f"Target Location: {fallback_text}")
     else:
-        st.warning(f"📸 [Photo Placeholder for {fallback_text}] — Upload '{image_filename}' to your GitHub repository to see your bus photo here!")
+        st.warning(f"📸 [Photo Placeholder for {fallback_text}] — Upload '{jpg_version}' or '{jpeg_version}' to your GitHub repository to see your bus photo here!")
 
 # 3. Create Mobile-Friendly Tabs for the 4 Main Sections
 tab1, tab2, tab3, tab4 = st.tabs([
@@ -49,7 +56,7 @@ with tab1:
     col1, col2 = st.columns(2)
     
     with col1:
-        st.subheader("👈 Passenger Side")
+        st.subheader("👉 Passenger Side")
         hoses_clicked = st.button("🪱 Hoses", use_container_width=True)
         steering_axle_clicked = st.button("🔩 Steering Axle (Springs/Mounts/U-Bolts)", use_container_width=True)
         shocks_clicked = st.button("🛢️ Shock Absorbers", use_container_width=True)
@@ -59,7 +66,7 @@ with tab1:
         rims_clicked = st.button("⭕ Rims", use_container_width=True)
         
     with col2:
-        st.subheader("👉 Driver Side")
+        st.subheader("👈 Driver Side")
         coolant_clicked = st.button("🧪 Coolant", use_container_width=True)
         oil_clicked = st.button("🛢️ Oil", use_container_width=True)
         ps_fluid_clicked = st.button("💧 Power Steering Fluid", use_container_width=True)
