@@ -49,7 +49,7 @@ with tab1:
     col1, col2 = st.columns(2)
     
     with col1:
-        st.subheader("👉 Passenger Side")
+        st.subheader("👈 Passenger Side")
         hoses_clicked = st.button("🪱 Hoses", use_container_width=True)
         steering_axle_clicked = st.button("🔩 Steering Axle (Springs/Mounts/U-Bolts)", use_container_width=True)
         shocks_clicked = st.button("🛢️ Shock Absorbers", use_container_width=True)
@@ -59,7 +59,7 @@ with tab1:
         rims_clicked = st.button("⭕ Rims", use_container_width=True)
         
     with col2:
-        st.subheader("👈 Driver Side")
+        st.subheader("👉 Driver Side")
         coolant_clicked = st.button("🧪 Coolant", use_container_width=True)
         oil_clicked = st.button("🛢️ Oil", use_container_width=True)
         ps_fluid_clicked = st.button("💧 Power Steering Fluid", use_container_width=True)
